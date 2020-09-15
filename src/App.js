@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ListaDeLaCompra from './Views/ListaDeLaCompra/ListaDeLaCompra';
+import catalogo from './Utils/catalogo';
 
 function App() {
   return (
     <div className="App">
-      <ListaDeLaCompra></ListaDeLaCompra>
+      <ListaDeLaCompra catalogo={catalogo}></ListaDeLaCompra>
     </div>
   );
 }

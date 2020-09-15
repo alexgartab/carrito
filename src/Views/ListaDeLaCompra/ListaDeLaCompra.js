@@ -1,28 +1,48 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import List from '@material-ui/core/List'
-import catalogo from '../../Utils/catalogo'
-import { ListItem } from 'material-ui'
-import { ListItemText } from '@material-ui/core'
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import AddIcon from '@material-ui/icons/Add';
 
-const ListaDeLaCompra = ({ pitos }) =>{
+
+const ListaDeLaCompra = ({ catalogo }) => {
     return (
-        <div>
-            <List> {console.log(catalogo[0])}
-                <ListItem><ListItemText>{catalogo[0].nombre}</ListItemText></ListItem>
-            </List>
-
-        </div>
+        <>
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Nombre</TableCell>
+                            <TableCell>Precio</TableCell>
+                            <TableCell>Añadir al carrito</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {catalogo.map((producto) => {
+                            return <TableRow key={producto.nombre}>
+                                <TableCell>{producto.nombre}</TableCell>
+                                <TableCell>{producto.precio}€/kilo</TableCell>
+                                <TableCell><AddIcon color="primary" /></TableCell>
+                            </TableRow>
+                        })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </>
     )
 }
 
-ListaDeLaCompra.propTypes = {    
+ListaDeLaCompra.propTypes = {
     catalogo: PropTypes.arrayOf(
         PropTypes.shape({
             nombre: PropTypes.string.isRequired,
             precio: PropTypes.string.isRequired
         })
-    ).isRequired,
+    )
 }
 
 export default ListaDeLaCompra

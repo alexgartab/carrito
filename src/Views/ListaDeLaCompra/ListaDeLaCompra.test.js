@@ -2,13 +2,11 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import ListaDeLaCompra from './ListaDeLaCompra'
 
-test('Lista render', async () =>{
-    const producto = 'Plátano'
-    const precio = '2€'
-
-    const { findAllByRole } = render(<ListaDeLaCompra catalogo={catalogo} />)
-    const productosDeLaLista = await findAllByRole('heading')
-    expect(productosDeLaLista[0]).toHaveTextContent(producto)
-    expect(productosDeLaLista[1]).toHaveTextContent(precio)
+test('render Lista', async () => {
+    const catalogo = [{nombre: '', precio: ''}]
+    const { findAllByRole } = render(<ListaDeLaCompra catalogo={catalogo}/>)
+    const componentesLista = await findAllByRole('cell')
+    expect(componentesLista[0]).toHaveTextContent(catalogo[0].nombre)
+    expect(componentesLista[0]).toHaveTextContent(catalogo[0].precio)
 
 })
