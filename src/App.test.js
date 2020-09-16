@@ -1,9 +1,25 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import App from './App';
+import { shallow } from 'enzyme'
+import ListaDeLaCompra from './Views/ListaDeLaCompra/ListaDeLaCompra';
+import Carrito from './Views/Carrito/Carrito';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/Lista de la compra/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe('App', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<App/>)
+  });
+
+  it('should render App', () => {
+      expect(wrapper.find('div').length).toEqual(1);
+  })
+
+  it('should find ListaDeLaCompra', () => {
+    expect(wrapper.containsMatchingElement(<ListaDeLaCompra/>)).toEqual(true)
+  })
+
+  it('should find Carrito', () => {
+    expect(wrapper.containsMatchingElement(<Carrito/>)).toEqual(true)
+  })
+})
