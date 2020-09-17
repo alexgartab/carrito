@@ -16,7 +16,7 @@ describe('App', () => {
   })
 
   it('should find ListaDeLaCompra', () => {
-    expect(wrapper.containsMatchingElement(<ListaDeLaCompra catalogo={[]} anadirAlCarrito={() => { }} />)).toEqual(false)
+    expect(wrapper.containsMatchingElement(<ListaDeLaCompra/>)).toEqual(true)
   })
 
   it('should find anadirAlCarrito function', () => {
@@ -24,6 +24,6 @@ describe('App', () => {
   })
 
   it('should find Carrito', () => {
-    expect(wrapper.containsMatchingElement(<Carrito listaDeLaCompra={[]} />)).toEqual(true)
+    expect(wrapper.containsMatchingElement(<Carrito/>)).toEqual(true)
   })
 })
