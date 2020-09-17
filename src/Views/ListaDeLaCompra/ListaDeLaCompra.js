@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import AddIcon from '@material-ui/icons/Add';
 
 
-const ListaDeLaCompra = ({ catalogo }) => {
+const ListaDeLaCompra = ({ catalogo, anadirAlCarrito }) => {
     return (
         <>
             <TableContainer>
@@ -26,7 +26,7 @@ const ListaDeLaCompra = ({ catalogo }) => {
                             return <TableRow key={producto.nombre}>
                                 <TableCell>{producto.nombre}</TableCell>
                                 <TableCell>{producto.precio}€/kilo</TableCell>
-                                <TableCell><AddIcon color="primary" /></TableCell>
+                                <TableCell><AddIcon color="primary" onClick={()=> {anadirAlCarrito(producto)}} /></TableCell>
                             </TableRow>
                         })}
                     </TableBody>
@@ -37,6 +37,7 @@ const ListaDeLaCompra = ({ catalogo }) => {
 }
 
 ListaDeLaCompra.propTypes = {
+    anadirAlCarrito: PropTypes.func.isRequired,
     catalogo: PropTypes.arrayOf(
         PropTypes.shape({
             nombre: PropTypes.string.isRequired,

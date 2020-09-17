@@ -8,18 +8,22 @@ describe('App', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<App/>)
+    wrapper = shallow(<App />)
   });
 
   it('should render App', () => {
-      expect(wrapper.find('div').length).toEqual(1);
+    expect(wrapper.find('div').length).toEqual(1);
   })
 
   it('should find ListaDeLaCompra', () => {
-    expect(wrapper.containsMatchingElement(<ListaDeLaCompra/>)).toEqual(true)
+    expect(wrapper.containsMatchingElement(<ListaDeLaCompra catalogo={[]} anadirAlCarrito={() => { }} />)).toEqual(false)
+  })
+
+  it('should find anadirAlCarrito function', () => {
+    wrapper.find('ListaDeLaCompra').props().anadirAlCarrito()
   })
 
   it('should find Carrito', () => {
-    expect(wrapper.containsMatchingElement(<Carrito/>)).toEqual(true)
+    expect(wrapper.containsMatchingElement(<Carrito listaDeLaCompra={[]} />)).toEqual(true)
   })
 })

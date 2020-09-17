@@ -4,6 +4,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
+import './Carrito.css';
 
 const Carrito = ({ listaDeLaCompra }) => {
     return (
@@ -13,7 +14,11 @@ const Carrito = ({ listaDeLaCompra }) => {
                     <ShoppingCartIcon fontSize='large' />
                 </AccordionSummary>
                 <AccordionDetails>
-                    {'cosas que vas a comprar'}
+                    <ol>
+                    {listaDeLaCompra.map((productos)=>{
+                        return <li key={productos.nombre+productos.precio}> {productos.nombre + ' ' + productos.precio + '€/kilo'} </li>
+                    })}
+                    </ol>
                 </AccordionDetails>
             </Accordion>
         </div>
