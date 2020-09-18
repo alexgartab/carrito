@@ -20,10 +20,13 @@ describe('App', () => {
   })
 
   it('should find anadirAlCarrito function', () => {
-    wrapper.find('ListaDeLaCompra').props().anadirAlCarrito()
+    wrapper.find('ListaDeLaCompra').props().anadirAlCarrito({nombre: 'Platano', precio: 1})
+    expect(wrapper.find('Carrito').props().listaDeLaCompra.length).toBe(1)
+    wrapper.find('ListaDeLaCompra').props().anadirAlCarrito({nombre: 'Platano', precio: 1})
+    expect(wrapper.find('Carrito').props().listaDeLaCompra[0].cantidad).toBe(2)
   })
 
   it('should find Carrito', () => {
-    expect(wrapper.containsMatchingElement(<Carrito listaDeLaCompra={[]} />)).toEqual(true)
+    expect(wrapper.containsMatchingElement(<Carrito/>)).toEqual(true)
   })
 })

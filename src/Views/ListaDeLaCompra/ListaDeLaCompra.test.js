@@ -14,7 +14,7 @@ import { createRenderer } from 'react-dom/test-utils';
 
 describe('ListaDeLaCompra', () => {
     let wrapper
-    const catalogo = [{ nombre: 'Platano', precio: '1' }]
+    const catalogo = [{ nombre: 'Platano', precio: 1 }]
 
     beforeEach(() => {
         wrapper = shallow(<ListaDeLaCompra catalogo={catalogo} anadirAlCarrito={() => { }} />)

@@ -7,6 +7,19 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import './Carrito.css';
 
 const Carrito = ({ listaDeLaCompra }) => {
+
+    const getTotalCost = () => {
+        if(listaDeLaCompra.length === 0){
+            return 0
+        } else {
+            let coste = 0
+            listaDeLaCompra.forEach(producto => {
+                coste += producto.cantidad * producto.precio
+            });
+            return coste.toFixed(2)
+        }
+    }
+
     return (
         <div>
             <Accordion>
@@ -14,11 +27,14 @@ const Carrito = ({ listaDeLaCompra }) => {
                     <ShoppingCartIcon fontSize='large' />
                 </AccordionSummary>
                 <AccordionDetails>
-                    <ol>
-                    {listaDeLaCompra.map((productos)=>{
-                        return <li key={productos.nombre+productos.precio}> {productos.nombre + ' ' + productos.precio + '€/kilo'} </li>
-                    })}
-                    </ol>
+                    <div style={{display: "flex", flexDirection: 'column'}}>
+                        <ol>
+                            {listaDeLaCompra.map((productos) => {
+                                return <li key={productos.nombre + productos.precio}> {productos.nombre + ' ' + productos.precio + '€/kilo Cantidad:' + productos.cantidad} </li>
+                            })}
+                        </ol>
+                        <p>Total: {getTotalCost()}€</p>
+                    </div>
                 </AccordionDetails>
             </Accordion>
         </div>
@@ -28,7 +44,8 @@ const Carrito = ({ listaDeLaCompra }) => {
 Carrito.propTypes = {
     listaDeLaCompra: PropTypes.arrayOf(PropTypes.shape({
         nombre: PropTypes.string.isRequired,
-        precio: PropTypes.string.isRequired
+        precio: PropTypes.number.isRequired,
+        cantidad: PropTypes.number.isRequired
     }))
 }
 
