@@ -25,4 +25,9 @@ describe('Carrito', () => {
         wrapper = shallow(<Carrito listaDeLaCompra={[{nombre: 'Platano', precio: 1, cantidad: 1}]} borrarDelCarrito={()=> {}}/>)
         expect(wrapper.find('DeleteIcon').simulate('click'))
     })
+
+    it('should find buy button', () => {
+        wrapper = shallow(<Carrito listaDeLaCompra={[{nombre: 'Platano', precio: 1, cantidad: 1}]} borrarDelCarrito={()=> {}}/>)
+        expect(wrapper.find('button').simulate('click'))
+    })
 });

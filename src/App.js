@@ -29,11 +29,15 @@ function App() {
     setProductosEnCarrito(copiaProductosEnCarrito)
   }
 
+  const comprarCarrito = () => {
+    setProductosEnCarrito([])
+  }
+
   return (
     <div className="App">
       <h1>Lista de la compra</h1>
       <ListaDeLaCompra catalogo={catalogo} anadirAlCarrito={anadirAlCarrito}></ListaDeLaCompra>
-      <Carrito listaDeLaCompra={productosEnCarrito} borrarDelCarrito={borrarDelCarrito} />
+      <Carrito listaDeLaCompra={productosEnCarrito} borrarDelCarrito={borrarDelCarrito} comprarCarrito={comprarCarrito}/>
     </div>
   );
 }

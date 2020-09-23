@@ -7,7 +7,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import './Carrito.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const Carrito = ({ listaDeLaCompra, borrarDelCarrito }) => {
+const Carrito = ({ listaDeLaCompra, borrarDelCarrito, comprarCarrito }) => {
 
     const getTotalCost = () => {
         if(listaDeLaCompra.length === 0){
@@ -37,6 +37,7 @@ const Carrito = ({ listaDeLaCompra, borrarDelCarrito }) => {
                             })}
                         </ol>
                         <p>Total: {getTotalCost()}€</p>
+                        <button onClick={comprarCarrito}>Pagar ya!</button>
                     </div>
                 </AccordionDetails>
             </Accordion>
@@ -50,7 +51,8 @@ Carrito.propTypes = {
         precio: PropTypes.number.isRequired,
         cantidad: PropTypes.number.isRequired
     })),
-    borrarDelCarrito: PropTypes.func
+    borrarDelCarrito: PropTypes.func,
+    comprarCarrito: PropTypes.func
 }
 
 export default Carrito

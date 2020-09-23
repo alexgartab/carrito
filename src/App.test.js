@@ -19,6 +19,10 @@ describe('App', () => {
     expect(wrapper.containsMatchingElement(<ListaDeLaCompra/>)).toEqual(true)
   })
 
+  it('should find Carrito', () => {
+    expect(wrapper.containsMatchingElement(<Carrito/>)).toEqual(true)
+  })
+
   it('should find editarCarrito function', () => {
     //añadir al carrito
     wrapper.find('ListaDeLaCompra').props().anadirAlCarrito({nombre: 'Platano', precio: 1})
@@ -33,7 +37,9 @@ describe('App', () => {
     expect(wrapper.find('Carrito').props().listaDeLaCompra.length).toBe(0)
   })
 
-  it('should find Carrito', () => {
-    expect(wrapper.containsMatchingElement(<Carrito/>)).toEqual(true)
+  it('should comprarCarrito', () => {
+    wrapper.find('ListaDeLaCompra').props().anadirAlCarrito({nombre: 'Platano', precio: 1})
+    wrapper.find('Carrito').props().comprarCarrito()
+    expect(wrapper.find('Carrito').props().listaDeLaCompra.length).toBe(0)
   })
 })
