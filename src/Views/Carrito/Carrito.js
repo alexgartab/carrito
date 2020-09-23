@@ -6,8 +6,11 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import './Carrito.css';
 import DeleteIcon from '@material-ui/icons/Delete';
+import descuentos from '../../Utils/descuentos'
 
 const Carrito = ({ listaDeLaCompra, borrarDelCarrito, comprarCarrito }) => {
+
+    const [descuento, setDescuento] = React.useState(0)
 
     const getTotalCost = () => {
         if(listaDeLaCompra.length === 0){
@@ -17,8 +20,14 @@ const Carrito = ({ listaDeLaCompra, borrarDelCarrito, comprarCarrito }) => {
             listaDeLaCompra.forEach(producto => {
                 coste += producto.cantidad * producto.precio
             });
+            coste -= coste * descuento
             return coste.toFixed(2)
         }
+    }
+
+    const addDescuento = ({value}) => {
+        const descuento = descuentos.find(descuento => descuento.codigo === value) || {descuento: 0}
+        setDescuento(descuento.descuento)
     }
 
     return (
@@ -38,6 +47,7 @@ const Carrito = ({ listaDeLaCompra, borrarDelCarrito, comprarCarrito }) => {
                         </ol>
                         <p>Total: {getTotalCost()}€</p>
                         <button onClick={comprarCarrito}>Pagar ya!</button>
+                        <div>Aniadir descuento: <input onChange={(event) => {addDescuento(event.target)}}/></div>
                     </div>
                 </AccordionDetails>
             </Accordion>

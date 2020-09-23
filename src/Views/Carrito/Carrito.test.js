@@ -9,7 +9,7 @@ describe('Carrito', () => {
     });
 
     it('should render', () => {
-        expect(wrapper.find('div').length).toEqual(2)
+        expect(wrapper.find('div').length).toEqual(3)
     });
 
     it('should calculate total cost of CARRITO 0', () => {
@@ -29,5 +29,12 @@ describe('Carrito', () => {
     it('should find buy button', () => {
         wrapper = shallow(<Carrito listaDeLaCompra={[{nombre: 'Platano', precio: 1, cantidad: 1}]} borrarDelCarrito={()=> {}}/>)
         expect(wrapper.find('button').simulate('click'))
+    })
+
+    it('should add descuento', () => {
+        wrapper = shallow(<Carrito listaDeLaCompra={[{nombre: 'Platano', precio: 1, cantidad: 1}]} borrarDelCarrito={()=> {}}/>)
+        wrapper.find('input').simulate('change', {target: {value: 'VE'}})
+        wrapper.find('input').simulate('change', {target: {value: 'VEINTE'}})
+        expect(wrapper.find('p').text()).toBe('Total: 0.80€')
     })
 });
