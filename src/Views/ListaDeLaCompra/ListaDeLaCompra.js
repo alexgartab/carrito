@@ -16,17 +16,17 @@ const ListaDeLaCompra = ({ catalogo, anadirAlCarrito }) => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Nombre</TableCell>
-                            <TableCell>Precio</TableCell>
-                            <TableCell>Añadir al carrito</TableCell>
+                            <TableCell style={{color: 'white'}}>Nombre</TableCell>
+                            <TableCell style={{color: 'white'}}>Precio</TableCell>
+                            <TableCell style={{color: 'white'}}>Añadir al carrito</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {catalogo.map((producto) => {
                             return <TableRow key={producto.nombre}>
-                                <TableCell>{producto.nombre}</TableCell>
-                                <TableCell>{producto.precio}€/kilo</TableCell>
-                                <TableCell><AddIcon color="primary" onClick={()=> {anadirAlCarrito(producto)}} /></TableCell>
+                                <TableCell style={{color: 'white'}}>{producto.nombre}</TableCell>
+                                <TableCell style={{color: 'white'}}>{producto.precio}€/kilo</TableCell>
+                                <TableCell style={{color: 'white'}}><AddIcon color="primary" onClick={()=> {anadirAlCarrito(producto)}} /></TableCell>
                             </TableRow>
                         })}
                     </TableBody>
@@ -40,7 +40,7 @@ ListaDeLaCompra.propTypes = {
     catalogo: PropTypes.arrayOf(
         PropTypes.shape({
             nombre: PropTypes.string.isRequired,
-            precio: PropTypes.string.isRequired
+            precio: PropTypes.number.isRequired
         })
     ),
     anadirAlCarrito: PropTypes.func

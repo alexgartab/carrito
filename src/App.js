@@ -8,7 +8,13 @@ function App() {
   const [productosEnCarrito, setProductosEnCarrito] = React.useState([]);
   const anadirAlCarrito = (producto) => {
     const copiaProductosEnCarrito = [...productosEnCarrito]
-    copiaProductosEnCarrito.push(producto)
+    if (copiaProductosEnCarrito.findIndex(productoEnCarrito => producto.nombre === productoEnCarrito.nombre) === -1) {
+      producto.cantidad = 1
+      copiaProductosEnCarrito.push(producto)
+    } else {
+      copiaProductosEnCarrito[copiaProductosEnCarrito.findIndex(productoEnCarrito => producto.nombre === productoEnCarrito.nombre)].cantidad++
+    }
+    // copiaProductosEnCarrito.push()
     setProductosEnCarrito(copiaProductosEnCarrito)
   }
   return (
