@@ -1,16 +1,6 @@
 import React from 'react'
 import ListaDeLaCompra from './ListaDeLaCompra'
 import { shallow } from 'enzyme';
-import { createRenderer } from 'react-dom/test-utils';
-
-// test('render Lista', async () => {
-//     const catalogo = [{nombre: '', precio: ''}]
-//     const { findAllByRole } = render(<ListaDeLaCompra catalogo={catalogo}/>)
-//     const componentesLista = await findAllByRole('cell')
-//     expect(componentesLista[0]).toHaveTextContent(catalogo[0].nombre)
-//     expect(componentesLista[0]).toHaveTextContent(catalogo[0].precio)
-
-// })
 
 describe('ListaDeLaCompra', () => {
     let wrapper
@@ -27,6 +17,6 @@ describe('ListaDeLaCompra', () => {
     });
 
     it('should simulate click', () => {
-        wrapper.find('AddIcon').simulate('click')
+        expect(wrapper.find('AddIcon').simulate('click'))
     });
 });

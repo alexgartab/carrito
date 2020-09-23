@@ -5,7 +5,9 @@ import catalogo from './Utils/catalogo';
 import Carrito from './Views/Carrito/Carrito';
 
 function App() {
+
   const [productosEnCarrito, setProductosEnCarrito] = React.useState([]);
+
   const anadirAlCarrito = (producto) => {
     const copiaProductosEnCarrito = [...productosEnCarrito]
     if (copiaProductosEnCarrito.findIndex(productoEnCarrito => producto.nombre === productoEnCarrito.nombre) === -1) {
@@ -14,14 +16,24 @@ function App() {
     } else {
       copiaProductosEnCarrito[copiaProductosEnCarrito.findIndex(productoEnCarrito => producto.nombre === productoEnCarrito.nombre)].cantidad++
     }
-    // copiaProductosEnCarrito.push()
     setProductosEnCarrito(copiaProductosEnCarrito)
   }
+
+  const borrarDelCarrito = (posicion) => {
+    const copiaProductosEnCarrito = [...productosEnCarrito]
+    if (copiaProductosEnCarrito[posicion].cantidad === 1) {
+      copiaProductosEnCarrito.splice(posicion, 1)
+    } else {
+      copiaProductosEnCarrito[posicion].cantidad--
+    }
+    setProductosEnCarrito(copiaProductosEnCarrito)
+  }
+
   return (
     <div className="App">
       <h1>Lista de la compra</h1>
       <ListaDeLaCompra catalogo={catalogo} anadirAlCarrito={anadirAlCarrito}></ListaDeLaCompra>
-      <Carrito listaDeLaCompra={productosEnCarrito} />
+      <Carrito listaDeLaCompra={productosEnCarrito} borrarDelCarrito={borrarDelCarrito} />
     </div>
   );
 }
